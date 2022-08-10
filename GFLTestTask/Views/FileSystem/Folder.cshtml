@@ -1,0 +1,23 @@
+﻿@model FoldersViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>@Model.FolderName</h1>
+
+<ul>
+    @foreach (var item in Model.Subfolders)
+    {
+        <li>
+            @if (item.Type == "Folder")
+            {
+                <a href="@Context.Request.Path.Add("/" + item.Name)">@item.Name</a>
+            }
+            else
+            {
+                <div>@item.Name</div>
+            }
+        </li>
+    }
+</ul>

@@ -1,4 +1,4 @@
-namespace GFLTestTask.Models
+namespace GFLTestTask.ViewModels
 {
     public class ErrorViewModel
     {
