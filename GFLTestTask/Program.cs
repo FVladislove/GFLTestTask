@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GFLTestTask.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<GFLTestTaskContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GFLTestTaskContext")
+    ?? throw new InvalidOperationException("Connection string 'GFLTestTaskContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/");
 
 app.Run();
